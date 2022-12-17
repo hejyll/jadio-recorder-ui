@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jadio_recorder_ui/apis/recorder_api_client.dart';
+import 'package:jadio_recorder_ui/models/program.dart';
 import 'package:jadio_recorder_ui/repositories/recorder.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -25,7 +26,7 @@ void main() {
       verify(apiClient.programs(any, any, any)).called(1);
       expect(
           programs,
-          isA<List<dynamic>>()
+          isA<List<Program>>()
               .having((list) => list, 'isNotNull', isNotNull)
               .having((list) => list.length, 'length', 0));
     });
@@ -39,7 +40,7 @@ void main() {
       verify(apiClient.programs(any, any, any)).called(1);
       expect(
           programs,
-          isA<List<dynamic>>()
+          isA<List<Program>>()
               .having((list) => list, 'isNotNull', isNotNull)
               .having((list) => list.length, 'length', 1)
               .having((list) => list[0].id, 'id',
