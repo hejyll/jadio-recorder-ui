@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jadio_recorder_ui/apis/recorder_api_client.dart';
 import 'package:jadio_recorder_ui/models/program.dart';
 import 'package:jadio_recorder_ui/repositories/recorder.dart';
 
 final programListViewModelProvider =
     StateNotifierProvider<ProgramListViewModel, AsyncValue<List<Program>>>(
-  (ref) => ProgramListViewModel(RecorderRepository()),
+  (ref) => ProgramListViewModel(RecorderRepository(
+    apiClient: RecorderApiClient(Dio()),
+  )),
 );
 
 class ProgramListViewModel extends StateNotifier<AsyncValue<List<Program>>> {
