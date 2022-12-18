@@ -6,13 +6,14 @@ import 'package:jadio_recorder_ui/repositories/recorder.dart';
 
 final programListViewModelProvider =
     StateNotifierProvider<ProgramListViewModel, AsyncValue<List<Program>>>(
-  (ref) => ProgramListViewModel(RecorderRepository(
-    apiClient: RecorderApiClient(Dio()),
-  )),
+  (ref) => ProgramListViewModel(
+    RecorderRepository(apiClient: RecorderApiClient(Dio())),
+    20,
+  ),
 );
 
 class ProgramListViewModel extends StateNotifier<AsyncValue<List<Program>>> {
-  ProgramListViewModel(this._recorderRepository)
+  ProgramListViewModel(this._recorderRepository, this.items)
       : super(const AsyncLoading<List<Program>>()) {
     fetch();
   }
